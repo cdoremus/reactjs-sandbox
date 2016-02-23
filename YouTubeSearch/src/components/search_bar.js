@@ -15,7 +15,7 @@ export default class SearchBar extends Component {
                 <input 
                     value={this.state.searchInput}
                     onChange={event => this.setState({searchInput: event.target.value})}/>
-                Searching for: {this.state.searchInput}
+                Search term: {this.state.searchInput}
             </div>
         );
     }
