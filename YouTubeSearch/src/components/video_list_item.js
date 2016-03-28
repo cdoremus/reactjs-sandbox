@@ -1,12 +1,18 @@
 import React from 'react';
 
-const VideoListItem = ({ video }) => {
+import { Component } from 'react';
+
+export default class VideoListItem extends Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
 		return (
-			<li key={video.etag}>
-				{`${video.snippet.channelTitle} - ${video.snippet.title}`}
+			<li key={this.props.video.etag}>
+				{`${this.props.video.snippet.channelTitle} 
+                    - ${this.props.video.snippet.title}`}
 			</li>
 		);
-};
-
-export default VideoListItem;
+	}
+}
  
