@@ -3,6 +3,13 @@
     text-align: center;
 }
 
+.search-title {
+    display: inline;
+    font-size: 18px;
+    color: #f09;
+    font-weight: bold;
+}
+
 .search-bar input{
     width: 75%;
 }

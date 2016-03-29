@@ -7,6 +7,7 @@ import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 
 const API_KEY = 'AIzaSyCImn7DsUikapPFYDE4OrI5GP1heXIS8ns';
+export const DEFAULT_SEARCH_TERM = 'angular 2';
 
 export default class App extends Component {
 	constructor(props) {
@@ -15,7 +16,7 @@ export default class App extends Component {
             videos: [],
             selectedVideo: null
         };
-        this.videoSearch('surfboards');
+        this.videoSearch(DEFAULT_SEARCH_TERM);
 	}
 
     videoSearch(searchTerm) {
