@@ -11,13 +11,12 @@ export default class SearchBar extends Component {
     
     render() {
         return (
-            <div>
+            <div className="search-bar">
                 {/* input is a Controlled Component in that the value only changes 
                     when the state changes */}
                 <input 
                     value={this.state.searchInput}
                     onChange={event => this.setState({searchInput: event.target.value})}/>
-                Search term: {this.state.searchInput}
             </div>
         );
     }
