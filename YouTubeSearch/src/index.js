@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import _ from 'lodash';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
@@ -27,9 +28,11 @@ export default class App extends Component {
     }
 
 	render () {
+        /* Debounce search for 500 miliseconds to improve performance */
+        const videoSearcher = _.debounce(searchTerm => {this.videoSearch(searchTerm)}, 500);
     	return (
     		<div>
-    			<SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+    			<SearchBar onSearchTermChange={videoSearcher} />
                 <VideoDetail video={this.state.selectedVideo} />
                 {/* Pass callback function to set selectedVideo to VideoList, who then passes it 
                     onto VideoListItem who calls the callback when it is clicked (onClick). 
