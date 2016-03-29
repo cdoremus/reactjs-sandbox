@@ -4,8 +4,6 @@ export default class VideoListItem extends Component {
     
 	constructor(props) {
 		super(props);
-        this.video = props.video;
-        // this.imageUrl = props.video.snippet.thumbnails.default.url;
 	}
     
 	render() {
@@ -15,11 +13,11 @@ export default class VideoListItem extends Component {
                 <div className="video-list-media">
                     <div className="media-left">
                         <img className="media-object" 
-                            src={this.video.snippet.thumbnails.default.url}/>
+                            src={this.props.video.snippet.thumbnails.default.url}/>
                     </div>
                     <div className="media-body">
                         <div className="media-heading">
-                            {this.video.snippet.title}
+                            {this.props.video.snippet.title}
                         </div>
                     </div>
                  </div>
