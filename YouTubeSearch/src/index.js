@@ -14,19 +14,22 @@ export default class App extends Component {
             videos: [],
             selectedVideo: null
         };
+        this.videoSearch('surfboards');
+	}
 
-		YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+    videoSearch(searchTerm) {
+		YTSearch({key: API_KEY, term: searchTerm}, (videos) => {
 			this.setState({
                 videos, 
                 selectedVideo: videos[0]
             });
-		});
-	}
+		});        
+    }
 
 	render () {
     	return (
     		<div>
-    			<SearchBar/>
+    			<SearchBar onSearchTermChange={term => this.videoSearch(term)} />
                 <VideoDetail video={this.state.selectedVideo} />
                 {/* Pass callback function to set selectedVideo to VideoList, who then passes it 
                     onto VideoListItem who calls the callback when it is clicked (onClick). 
