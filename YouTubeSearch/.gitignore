@@ -1,3 +1,4 @@
 /node_modules
 bundle.js
 npm-debug.log
+/src/youtube_api_key.txt

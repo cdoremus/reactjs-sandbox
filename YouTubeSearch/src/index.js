@@ -5,8 +5,8 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import {getYouTubeApiKey} from './components/config';
 
-const API_KEY = 'AIzaSyCImn7DsUikapPFYDE4OrI5GP1heXIS8ns';
 export const DEFAULT_SEARCH_TERM = 'angular 2';
 
 export default class App extends Component {
@@ -16,16 +16,26 @@ export default class App extends Component {
             videos: [],
             selectedVideo: null
         };
+
         this.videoSearch(DEFAULT_SEARCH_TERM);
 	}
 
+    getApiKey() {
+        return getYouTubeApiKey();
+    }
+
+    /* Get the YouTube api key from file and then do the YT search. */
     videoSearch(searchTerm) {
-		YTSearch({key: API_KEY, term: searchTerm}, (videos) => {
-			this.setState({
-                videos, 
-                selectedVideo: videos[0]
-            });
-		});        
+        this.getApiKey().then(apiKey => {
+            // console.log("Key sent to YTSearch: ", apiKey);
+            YTSearch({key: apiKey, term: searchTerm}, (videos) => {
+                this.setState({
+                    videos,
+                    selectedVideo: videos[0]
+                });
+		    });
+        })
+        .fail(() => console.log("Video search failed with search term: " + searchTerm));
     }
 
 	render () {
@@ -35,18 +45,18 @@ export default class App extends Component {
     		<div>
     			<SearchBar onSearchTermChange={videoSearcher} />
                 <VideoDetail video={this.state.selectedVideo} />
-                {/* Pass callback function to set selectedVideo to VideoList, who then passes it 
-                    onto VideoListItem who calls the callback when it is clicked (onClick). 
+                {/* Pass callback function to set selectedVideo to VideoList, who then passes it
+                    onto VideoListItem who calls the callback when it is clicked (onClick).
                  */}
-    			<VideoList 
-                    onVideoSelect={selectedVideo => this.setState({selectedVideo})} 
+    			<VideoList
+                    onVideoSelect={selectedVideo => this.setState({selectedVideo})}
                     videos={this.state.videos}/>
 			</div>
-    		);    
+    		);
 	}
 }
 
 ReactDOM.render(
-    <App />, 
+    <App />,
     document.querySelector('.container')
     );

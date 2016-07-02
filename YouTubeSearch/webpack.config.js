@@ -1,3 +1,5 @@
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
   entry: [
     './src/index.js'
@@ -19,5 +21,12 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './'
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+            // {output}/file.txt
+            { from: './src/youtube_api_key.txt'}
+    ])
+
+  ]
 };

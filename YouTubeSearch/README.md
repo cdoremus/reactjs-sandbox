@@ -5,6 +5,8 @@
 
 This project is based on a React/Redux starter project [here](https://github.com/StephenGrider/ReduxSimpleStarter)
 
+It requires a YouTube API key inside a file called youtube_api_key.txt
+
 After cloning this repo, issue the following commands:
 ```
 # Installs all dependencies
